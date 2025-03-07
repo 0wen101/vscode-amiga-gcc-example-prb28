@@ -18,6 +18,29 @@
             "type": "shell",
             "command": "make clean",
             "problemMatcher": []
+        },
+        {
+            "label": "PrintVSCodeVariables",
+            "type": "shell",
+            "command": "echo fileDirnameForwardSlash: ${input:fileDirnameForwardSlash}, workspaceFolder: ${workspaceFolder}",
+            "args": [],
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        }
+    ],
+    "inputs": [
+        {
+          "id": "fileDirnameForwardSlash",
+          "type": "command",
+          "command": "extension.commandvariable.transform",
+          "args": {
+            "text": "${workspaceFolder}",
+            "find": "\\\\",
+            "replace": "/",
+            "flags": "g"
+          }
         }
     ]
 }
