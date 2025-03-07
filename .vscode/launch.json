@@ -1,0 +1,76 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "amiga-assembly",
+            "request": "launch",
+            "name": "Run",
+            "emulatorType": "winuae",
+            "program": "${workspaceFolder}/uae/Dh0/hello",
+
+            "emulatorArgs": [
+                "-s",
+                 "filesystem=rw,DH0:${workspaceFolder}/uae/DH0",
+                "-s",
+                "bsdsocket_emu=true"
+            ],
+            //"preLaunchTask": "Build", //see tasks,json
+            //"preLaunchTask": "PrintVSCodeVariables",
+            "noDebug": true //stop winuae timeout, note: no uae 'debug' output shown in Debug console. 
+        },
+        {
+            "name": "Debug",
+            "type": "cppdbg",
+            "request": "launch", 
+            "program": "${input:fileDirnameForwardSlash}/uae/DH0/hello",
+            "stopAtEntry": false, //set true to stop on line 1 automatically
+            "args": [],
+            "cwd": ".",//def, no dif
+            //"cwd": "${workspaceFolder}",
+            "miDebuggerServerAddress": ":12345",
+            "environment": [],
+            "externalConsole": false,
+           
+            "windows": {
+                "MIMode": "gdb",
+                "miDebuggerPath":"c:/amiga-gcc/bin/m68k-amigaos-gdb.exe",
+                "sourceFileMap": {
+                    //"/": "${workspaceFolder}"  // default. e.g. workspace on c drive 
+                     "/cygdrive/d/": "d:/"   //uncomment this line, comment out above line if this workspace is on d drive for example
+                    //"/" : "d:/"
+                    //"/": "${workspaceFolder}"
+                    // "/cygdrive/d/": "d:/"      //e.g. d drive
+                    //"/cygdrive/c/": "c:/"      //e.g. c drive
+                },
+            },
+           "setupCommands": [
+            {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": false
+            }
+
+        ],
+            "logging": {
+                "engineLogging": true,
+                "trace": false,
+                "traceResponse": false,
+            }
+        }
+    ],
+
+    //use command variable extension to change back to forward slash for use in the 'program' value for debug gdb configuration 
+    "inputs": [
+        {
+          "id": "fileDirnameForwardSlash",
+          "type": "command",
+          "command": "extension.commandvariable.transform",
+          "args": {
+            "text": "${workspaceFolder}",
+            "find": "\\\\",
+            "replace": "/",
+            "flags": "g"
+          }
+        }
+    ]
+}
