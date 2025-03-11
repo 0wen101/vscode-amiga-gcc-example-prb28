@@ -22,10 +22,10 @@ Refer to docs for setup and build instructions
 
 1. [install](docs/1.install.md)<br>
 2. [workspace](docs/2.workspace.md)<br>
-3. [compile](docs/3.compile.md)<br>
-4. [run](docs/4.run.md)<br>
-5. [debugging](docs/5.debugging.md)<br>
-6. [issues](docs/6.issues.md)<br>
+3. [compile](docs/3.Compile.md)<br>
+4. [run](docs/4.Run.md)<br>
+5. [debugging](docs/5.Debugging.md)<br>
+6. [issues](docs/6.Issues.md)<br>
 <br>
 <br>
 
